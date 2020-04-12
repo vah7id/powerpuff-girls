@@ -1,0 +1,3 @@
+// interface (typing)
+
+export {}
