@@ -3,13 +3,22 @@
  * store setup and configurations
 */
 
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
+import rootSaga from './rootSaga';
+import createSagaMiddleware from 'redux-saga';
 
 export default function configureStore() {
-    return createStore(
-        rootReducer,
-        applyMiddleware(thunk)
+    // create the saga middleware
+    const sagaMiddleware = createSagaMiddleware();
+    const composeEnhancers =
+        ((window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
+            (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ trace: true, traceLimit: 100 })) ||
+        compose;
+    const store = createStore(
+        () => rootReducer, {}, composeEnhancers(applyMiddleware(sagaMiddleware, thunk)),
     );
-}
+    sagaMiddleware.run(rootSaga);
+    return {store};
+};

@@ -5,8 +5,10 @@ import configureStore from './store';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+const { store } = configureStore();
+
 ReactDOM.render(
-    <Provider store={configureStore()}>
+    <Provider store={store}>
         <App />
     </Provider>,
     document.getElementById('root')
