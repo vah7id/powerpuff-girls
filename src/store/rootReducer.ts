@@ -4,5 +4,5 @@ import episodeReducers from '../modules/episode/reducers';
 
 export default combineReducers({
     programReducers,
-    episodeReducers
+    episodeReducers,
 });
