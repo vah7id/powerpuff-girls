@@ -5,24 +5,23 @@ import {
     Route,
 } from "react-router-dom";
 
-import Program from "./modules/program";
-import Episode from "./modules/episode";
+import Show from "./modules/program/show";
+import Episode from "./modules/program/episode";
 
 function App() {
   return (
     <div className="App">
-        <header className="App-header">
-          Powerpuff-girls technical assignment
-        </header>
         <Router>
             <div>
             <Switch>
-                <Route path="/">
-                    <Program />
-                </Route>
-                <Route path="/program/:programId/eps/:episodeId">
-                    <Episode />
-                </Route>
+                <Route exact path="/" component={Show} />
+                <Route path="/program/:programId/season/:seasonId/episode/:episodeId"
+                       component={(routerProps) => <Episode
+                           programId={routerProps.match.params.programId}
+                           seasonId={routerProps.match.params.seasonId}
+                           episodeId={routerProps.match.params.episodeId}
+                       />}
+                />
             </Switch>
             </div>
         </Router>

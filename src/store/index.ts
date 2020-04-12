@@ -17,7 +17,7 @@ export default function configureStore() {
             (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ trace: true, traceLimit: 100 })) ||
         compose;
     const store = createStore(
-        () => rootReducer, {}, composeEnhancers(applyMiddleware(sagaMiddleware, thunk)),
+        rootReducer, composeEnhancers(applyMiddleware(sagaMiddleware, thunk)),
     );
     sagaMiddleware.run(rootSaga);
     return {store};
