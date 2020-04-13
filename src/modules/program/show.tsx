@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { actions } from './actions';
-import { Episode } from './interfaces';
+import {Episode, ProgramState} from './interfaces';
 import EpisodeItem from './components/EpisodeItem';
-import ProgramDetails from './components/ProgramDetails';
+import Details from './components/Details';
+import { RootState } from '../../store/rootState';
+import '../../assets/styles/program.scss';
 
 interface ProgramProps {
-    program: Show;
+    program: ProgramState;
     fetchProgram(id: number): void;
 }
 
@@ -23,11 +25,14 @@ class Show extends React.Component<Props> {
         return (
             <div className="Program">
                 {
-                    this.props.program ? <>
-                        <ProgramDetails {...this.props.program} />
+                    this.props.program?.id ? <>
+                        <Details {...this.props.program} />
                         <h3>Episodes</h3>
-                        <ul>{this.props.program.episodes.map((episode: Episode, index) =>
-                            <EpisodeItem idx={index} programId={this.props.program.id} {...episode} />)}</ul>
+                        <ul>{
+                            this.props.program.episodes &&
+                            this.props.program.episodes.map((episode: Episode, index) =>
+                            <EpisodeItem idx={index} programId={this.props.program.id} {...episode} />)}
+                        </ul>
                     </> :
                     <p>Loading...</p>
                 }
@@ -36,7 +41,7 @@ class Show extends React.Component<Props> {
     }
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: RootState) => ({
     program: state.program,
 });
 

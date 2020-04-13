@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { actions } from './actions';
 import { Episode } from './interfaces';
+import Details from "./components/Details";
+import placeholderImage from "../../assets/images/placeholder.png";
 
 interface ProgramProps {
     programId: string;
@@ -21,15 +23,14 @@ class Show extends React.Component<Props> {
     render() {
         return (
             <div className="Episode">
-                {this.props.episode ? <>
-                    <h2>
-                        {this.props.episode.name},
-                        SE{this.props.season} EP{this.props.id}
-                    </h2>
-                    <p dangerouslySetInnerHTML={{__html: this.props.episode.summary}} />
-                    <img src={this.props.episode.image.medium} alt={this.props.episode.name} />
-                    </> :
-                <p>Loading...</p>
+                {this.props.episode ?
+                    <Details
+                        id={this.props.id}
+                        title={`${this.props.episode.name}, SE${this.props.season} EP${this.props.id}`}
+                        description={this.props.episode.summary}
+                        cover={this.props.episode.image?.medium}
+                    /> :
+                    <p>Loading...</p>
                 }
             </div>
         );

@@ -7,6 +7,7 @@ import {
 
 import Show from "./modules/program/show";
 import Episode from "./modules/program/episode";
+import './assets/styles/app.scss';
 
 function App() {
   return (

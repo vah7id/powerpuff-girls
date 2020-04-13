@@ -4,7 +4,7 @@ export interface Program {
     title: string;
     description: string;
     cover: string;
-    episodes: Episode[];
+    episodes?: Episode[];
     id: number | null;
 }
 
