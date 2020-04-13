@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 import Show from "./modules/program/show";
 import Episode from "./modules/program/episode";
-import './assets/styles/app.scss';
+import './assets/styles/App.scss';
 
 function App() {
   return (

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Program } from "../interfaces";
 import placeholderImage from "../../../assets/images/placeholder.png";
-import '../../../assets/styles/details.scss';
+import '../../../assets/styles/DetailsCard.scss';
 
 export const DetailsCard: React.FC<Program> = ({ name, image, summary }) => (
     <div className={'DetailsCard'}>

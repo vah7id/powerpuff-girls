@@ -1,7 +1,7 @@
 import { actionTypes } from "./actions";
 import { ProgramState } from "../interfaces";
 
-const defaultState: ProgramState = {
+export const defaultState: ProgramState = {
     name: '',
     id: null,
     summary: '',

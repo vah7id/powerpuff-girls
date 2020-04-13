@@ -5,7 +5,7 @@ import {Episode, ProgramState} from './interfaces';
 import EpisodeItem from './components/EpisodeItem';
 import DetailsCard from './components/DetailsCard';
 import { RootState } from '../../store/rootState';
-import '../../assets/styles/program.scss';
+import '../../assets/styles/Program.scss';
 
 interface Props {
     program: ProgramState;
