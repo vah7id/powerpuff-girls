@@ -1,13 +1,11 @@
 .Program {
-  position: relative;
-
   ul {
     list-style: none;
     padding: 0;
 
     li {
       float: left;
-      border: 1px solid #222;
+      border: 1px solid #000;
       width: calc(100% - 20px);
       margin: 5px 0;
       padding: 10px;

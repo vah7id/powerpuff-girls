@@ -1,6 +1,6 @@
 $breakpoint-tablet: 768px;
 
-.Details {
+.DetailsCard {
   padding-top: 25px;
   display: flex;
 
@@ -22,9 +22,12 @@ $breakpoint-tablet: 768px;
     border: 1px solid #222;
     margin-top: 35px;
     flex: 1;
+    max-width: 400px;
 
     @media (max-width: $breakpoint-tablet) {
+      margin: 0 auto;
       width: 100%;
+      display: block;
     }
   }
 

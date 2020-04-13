@@ -1,5 +1,5 @@
 // actions
-import { Program, Episode } from './interfaces';
+import { Program, Episode } from '../interfaces';
 
 export const actionTypes = {
     FETCH_PROGRAM_BY_ID: '@App/FETCH_PROGRAM_BY_ID',

@@ -5,6 +5,7 @@ import configureStore from './store';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+// create and initialize the store instance
 const { store } = configureStore();
 
 ReactDOM.render(

@@ -1,34 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { actions } from './actions';
+import { actions } from './state/actions';
 import { Episode } from './interfaces';
-import Details from "./components/Details";
-import placeholderImage from "../../assets/images/placeholder.png";
+import DetailsCard from "./components/DetailsCard";
 
-interface ProgramProps {
-    programId: string;
-    seasonId: string;
-    episodeId: string;
+interface Props {
+    program: string;
+    season: string;
+    id: string;
     episode: Episode;
     fetchEpisode(season: string, episode: string, program: string): void;
 }
 
-type ReduxProps = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
-type Props = ProgramProps & ReduxProps;
-
 class Show extends React.Component<Props> {
     componentWillMount(): void {
-        this.props.fetchEpisode(this.props.seasonId, this.props.episodeId, this.props.programId);
+        // fetch the episode details
+        this.props.fetchEpisode(this.props.season, this.props.id, this.props.program);
     }
     render() {
         return (
             <div className="Episode">
+                {/* reusing the details card component for episode single preview */}
                 {this.props.episode ?
-                    <Details
+                    <DetailsCard
                         id={this.props.id}
-                        title={`${this.props.episode.name}, SE${this.props.season} EP${this.props.id}`}
-                        description={this.props.episode.summary}
-                        cover={this.props.episode.image?.medium}
+                        name={`${this.props.episode.name}, SE${this.props.season} EP${this.props.id}`}
+                        summary={this.props.episode.summary}
+                        image={this.props.episode.image}
                     /> :
                     <p>Loading...</p>
                 }

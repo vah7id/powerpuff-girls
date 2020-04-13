@@ -1,37 +1,38 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { actions } from './actions';
+import { actions } from './state/actions';
 import {Episode, ProgramState} from './interfaces';
 import EpisodeItem from './components/EpisodeItem';
-import Details from './components/Details';
+import DetailsCard from './components/DetailsCard';
 import { RootState } from '../../store/rootState';
 import '../../assets/styles/program.scss';
 
-interface ProgramProps {
+interface Props {
     program: ProgramState;
     fetchProgram(id: number): void;
 }
 
-type ReduxProps = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
-type Props = ProgramProps & ReduxProps;
-
 class Show extends React.Component<Props> {
     componentWillMount(): void {
-        // TODO: make the dynamic program view by replacing the below id with URL /:programId
-        const id = 6771; // The Powerpuff Girls program id
-        this.props.fetchProgram(id);
+        // TODO: to make the dynamic program view, just replace the below id with URL /:programId
+        const programId = 6771; // The Powerpuff Girls program id
+        this.props.fetchProgram(programId);
     }
     render() {
         return (
             <div className="Program">
                 {
                     this.props.program?.id ? <>
-                        <Details {...this.props.program} />
+                        {/* Program overview card component */}
+                        <DetailsCard {...this.props.program} />
                         <h3>Episodes</h3>
-                        <ul>{
+                        <ul>
+                        {
+                            /* map and render all the available episodes */
                             this.props.program.episodes &&
                             this.props.program.episodes.map((episode: Episode, index) =>
-                            <EpisodeItem idx={index} programId={this.props.program.id} {...episode} />)}
+                            <EpisodeItem idx={index} programId={this.props.program.id} {...episode} />)
+                        }
                         </ul>
                     </> :
                     <p>Loading...</p>

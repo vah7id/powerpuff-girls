@@ -1,16 +1,16 @@
 // interface (typing)
 
-export interface Program {
-    title: string;
-    description: string;
-    cover: string;
-    episodes?: Episode[];
-    id: number | null;
+export interface coverImage {
+    medium: string | null;
+    original: string | null;
 }
 
-export interface coverImage {
-    medium: string;
-    original: string;
+export interface Program {
+    name: string;
+    summary: string;
+    image?: coverImage;
+    episodes?: Episode[];
+    id: string | null;
 }
 
 export interface Episode {
@@ -20,7 +20,7 @@ export interface Episode {
     programId: number;
     number: number;
     season: number;
-    image: coverImage;
+    image?: coverImage;
     id: number;
 }
 

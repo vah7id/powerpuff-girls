@@ -1,11 +1,14 @@
 import { actionTypes } from "./actions";
-import { ProgramState } from "./interfaces";
+import { ProgramState } from "../interfaces";
 
 const defaultState: ProgramState = {
-    title: '',
+    name: '',
     id: null,
-    description: '',
-    cover: '',
+    summary: '',
+    image: {
+        medium: null,
+        original: null,
+    },
     episodes: [],
     episode: null,
     loading: false,
@@ -14,6 +17,7 @@ const defaultState: ProgramState = {
 export default (state = defaultState, action): ProgramState => {
     switch (action.type) {
         case actionTypes.FETCH_PROGRAM_BY_ID:
+        case actionTypes.FETCH_PROGRAM_BY_ID:
             return {
                 ...state,
                 loading: true,
@@ -21,11 +25,8 @@ export default (state = defaultState, action): ProgramState => {
         case actionTypes.SET_PROGRAM:
             return {
                 ...state,
-                id: action.payload.id,
-                title: action.payload.name,
-                description: action.payload.summary,
-                cover: action.payload.image.medium,
-                episodes: action.payload.episodes,
+                ...action.payload,
+                loading: false,
             };
         case actionTypes.SET_EPISODE:
             return {
