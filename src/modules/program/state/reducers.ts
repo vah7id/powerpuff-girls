@@ -17,7 +17,7 @@ export const defaultState: ProgramState = {
 export default (state = defaultState, action): ProgramState => {
     switch (action.type) {
         case actionTypes.FETCH_PROGRAM_BY_ID:
-        case actionTypes.FETCH_PROGRAM_BY_ID:
+        case actionTypes.FETCH_EPISODE:
             return {
                 ...state,
                 loading: true,
